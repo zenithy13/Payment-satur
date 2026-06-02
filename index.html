@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>zenithyshop - รับทำเว็บไซต์ & เติมเกม</title>
+    <title>zenithyshop - รับทำเว็บไซต์ & บริการ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,34 +17,34 @@
                         'fredoka': ['Fredoka', 'sans-serif'],
                     },
                     colors: {
-                        'pj-bg': '#fefefe', // เปลี่ยนเป็นโทนสว่างตามธีมเขียว-ครีม
-                        'pj-blue-light': '#dcfce7', // เขียวอ่อน
-                        'pj-blue-main': '#22c55e', // เขียวหลัก
-                        'pj-blue-dark': '#1a1a1a', // ดำ
-                        'pj-yellow-light': '#fef3c7', // ครีม
-                        'pj-yellow-main': '#f59e0b',
-                        'pj-pink': '#22c55e', // เปลี่ยนโทนชมพูเป็นเขียวเพื่อคุมโทน
+                        'pj-bg': '#FDFBF7', /* ครีม */
+                        'pj-blue-light': '#D8E2DC', /* เขียวอ่อน */
+                        'pj-blue-main': '#84a98c', /* เขียวหลัก */
+                        'pj-blue-dark': '#1A1A1A', /* ดำ */
+                        'pj-yellow-light': '#FDF0D5',
+                        'pj-yellow-main': '#E9C46A',
+                        'pj-pink': '#A8C69F', /* เขียว */
                         'pj-white': '#ffffff',
                     },
                     boxShadow: {
-                        'soft': '0 10px 40px -10px rgba(34, 197, 94, 0.2)',
-                        'hard': '4px 4px 0px 0px rgba(0, 0, 0, 0.2)',
+                        'soft': '0 10px 40px -10px rgba(132, 169, 140, 0.3)',
+                        'hard': '4px 4px 0px 0px rgba(26, 26, 26, 0.2)',
                     }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Mitr', sans-serif; background-color: #fefefe; overflow-x: hidden; color: #1a1a1a; }
+        body { font-family: 'Mitr', sans-serif; background-color: #FDFBF7; overflow-x: hidden; color: #1A1A1A; }
         .font-eng { font-family: 'Fredoka', sans-serif; }
         .shape-header { border-radius: 40px 100px 100px 40px; position: relative; }
         .shape-info { border-radius: 20px; }
         .shape-bubble-left { border-radius: 20px; position: relative; }
-        .shape-bubble-left::after { content: ''; position: absolute; right: -15px; top: 50%; transform: translateY(-50%); border-width: 15px 0 15px 20px; border-color: transparent transparent transparent #22c55e; }
+        .shape-bubble-left::after { content: ''; position: absolute; right: -15px; top: 50%; transform: translateY(-50%); border-width: 15px 0 15px 20px; border-color: transparent transparent transparent #84a98c; }
         .shape-nota { border-radius: 20px; position: relative; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #dcfce7; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #D8E2DC; border-radius: 10px; }
         .modal { transition: opacity 0.3s ease, visibility 0.3s ease; }
         .modal.active { opacity: 1; visibility: visible; }
         .modal.inactive { opacity: 0; visibility: hidden; }
@@ -53,52 +53,80 @@
         .bg-shapes { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden; }
     </style>
 </head>
-<body class="antialiased relative selection:bg-yellow-200">
+<body class="antialiased relative selection:bg-pj-yellow-main selection:text-pj-blue-dark">
+    <!-- Background Decors -->
     <div class="bg-shapes">
-        <svg class="absolute top-10 -left-10 w-64 h-64 text-green-100 opacity-50" viewBox="0 0 200 200"><path fill="currentColor" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,81.3,-46.3C90.8,-33.5,96.8,-18,95.5,-2.9C94.2,12.2,85.6,26.9,75.3,39.6C65,52.3,53,63.1,39.4,70.5C25.8,77.9,10.6,81.9,-4.3,81.4C-19.2,80.9,-33.7,75.9,-47.5,68.4C-61.3,60.9,-74.3,50.9,-82.4,37.6C-90.5,24.3,-93.7,7.7,-91.4,-8.2C-89.1,-24.1,-81.3,-39.3,-69.9,-51.1C-58.5,-62.9,-43.5,-71.3,-29.1,-75.7C-14.7,-80.1, -1.2,-80.5, 12.5,-78.9C26.2,-77.3, 30.6,-83.6, 44.7,-76.4Z" transform="translate(100 100) scale(1.1)" /></svg>
+        <svg class="absolute top-10 -left-10 w-64 h-64 text-pj-blue-light opacity-50" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,81.3,-46.3C90.8,-33.5,96.8,-18,95.5,-2.9C94.2,12.2,85.6,26.9,75.3,39.6C65,52.3,53,63.1,39.4,70.5C25.8,77.9,10.6,81.9,-4.3,81.4C-19.2,80.9,-33.7,75.9,-47.5,68.4C-61.3,60.9,-74.3,50.9,-82.4,37.6C-90.5,24.3,-93.7,7.7,-91.4,-8.2C-89.1,-24.1,-81.3,-39.3,-69.9,-51.1C-58.5,-62.9,-43.5,-71.3,-29.1,-75.7C-14.7,-80.1, -1.2,-80.5, 12.5,-78.9C26.2,-77.3, 30.6,-83.6, 44.7,-76.4Z" transform="translate(100 100) scale(1.1)" />
+        </svg>
     </div>
-
     <main class="max-w-[500px] mx-auto min-h-screen px-4 py-12 relative z-10 flex flex-col gap-8">
+        
+        <!-- Header Section -->
         <section class="relative">
+            <div class="absolute -right-4 top-[80%] w-12 h-32 border-r-4 border-b-4 border-pj-blue-light rounded-br-[40px] z-0"></div>
             <div class="shape-header bg-pj-blue-light p-8 pr-16 shadow-soft z-10 relative mt-4 ml-[-20px] mr-4">
-                <div class="absolute -top-10 -right-4 z-30">
-                    <div class="w-32 h-36 bg-pj-white p-2.5 pb-8 rounded shadow-lg border border-green-200">
-                        <img src="https://placehold.co/150x150/1a1a1a/ffffff?text=Zenithy" alt="Logo" class="w-full h-full object-cover">
+                <div class="absolute -top-10 -right-4 z-30 transform rotate-3">
+                    <div class="w-32 h-36 bg-pj-white p-2 rounded shadow-lg border border-pj-blue-light/50 flex flex-col items-center">
+                        <img src="IMG_1830.jpeg" alt="Logo" class="w-full h-full object-cover">
                     </div>
                 </div>
-                <h1 class="font-eng text-4xl text-pj-blue-dark font-bold tracking-wide">zenithy<br><span class="text-2xl ml-4">shop</span></h1>
-                <div class="inline-block bg-pj-blue-dark text-pj-white font-eng px-4 py-1.5 rounded-full text-sm mt-3">Open 9:00-23:00</div>
+                <h1 class="font-eng text-5xl text-pj-blue-dark font-bold tracking-wide drop-shadow-md mb-2 relative z-10">zenithy<br><span class="text-3xl ml-4">shop</span></h1>
+                <div class="inline-block bg-pj-blue-dark text-pj-white font-eng px-4 py-1.5 rounded-full text-sm mt-3 shadow-md relative z-10">
+                    Open 09:00 - 23:00 น.
+                </div>
             </div>
-            <p class="mt-6 ml-6 text-sm font-medium pr-4">zenithy รับทำเว็บไซต์ร้าน / เติมเกม Identity V / ทำป้ายต่าง ๆ ครบจบที่นี่</p>
+            <p class="mt-6 ml-6 text-sm font-medium pr-4 relative z-10">
+                zenithy รับทำเว็บไซต์ร้าน / เติมเกม identity v / ทำป้ายต่าง ๆ เริ่มต้น 50.-
+            </p>
         </section>
 
+        <!-- Services Section -->
         <section class="relative ml-8">
-            <div class="shape-info bg-pj-white border-2 border-pj-blue-light p-6 shadow-soft">
-                <h2 class="font-eng text-xl font-bold text-pj-blue-main mb-3">SERVICES</h2>
-                <ul class="text-sm space-y-2">
-                    <li>• เว็บไซต์ร้านเริ่มต้น 129.- (เทมเพลต 50+)</li>
-                    <li>• เติมเกม Identity V</li>
-                    <li>• รับทำป้าย เริ่มต้น 50.-</li>
+            <div class="absolute -top-3 right-6 bg-pj-yellow-light text-pj-blue-dark font-eng font-bold px-4 py-1 rounded-full text-xs shadow-sm z-20 border-2 border-pj-white flex items-center gap-1">Services</div>
+            <div class="shape-info bg-pj-white border-2 border-pj-blue-light p-6 shadow-soft relative z-10 flex gap-4">
+                <div class="flex-1">
+                    <h2 class="font-eng text-xl font-bold uppercase mb-3 text-pj-blue-main">Services</h2>
+                    <ul class="text-xs space-y-2 list-none pl-1">
+                        <li class="flex items-start gap-1">✅ ทำเว็บไซต์ร้านเริ่มต้น 129.- (เทมเพลต 50+)</li>
+                        <li class="flex items-start gap-1">✅ ทำป้ายโฆษณาเริ่มต้น 50.- (บรีฟสีได้)</li>
+                        <li class="flex items-start gap-1">✅ เติมเกม Identity V</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="relative mr-8 mt-4">
+            <div class="shape-bubble-left bg-pj-blue-main p-5 shadow-soft z-10 text-pj-white">
+                <h2 class="font-eng text-2xl font-bold tracking-wide">Links</h2>
+                <div class="flex flex-col gap-2 mt-4">
+                    <a href="https://drive.google.com/drive/mobile/folders/1fj024BhkgC1ctJeiwyZUG3USteSdzWzr" target="_blank" class="bg-pj-white text-pj-blue-dark py-2 px-4 rounded-full text-sm font-semibold text-center">เทมเพลตเว็บไซต์</a>
+                    <a href="https://drive.google.com/drive/folders/1_XMpP9EC2Yqq2-6cYfRn0fy8i9Q6cvoi" target="_blank" class="bg-pj-white text-pj-blue-dark py-2 px-4 rounded-full text-sm font-semibold text-center">ตัวอย่างงานป้าย</a>
+                    <a href="https://m.facebook.com/story.php?story_fbid=pfbid0VoVRA4MbGu79CbqBREGD8jcxavv6HzJ2F9jcyvVCUrLxEPSRoFtNQNA44yM83zs9l&id=61586611223621" target="_blank" class="bg-pj-white text-pj-blue-dark py-2 px-4 rounded-full text-sm font-semibold text-center">เรทเติมเกม</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process & Rules -->
+        <section class="mx-4 space-y-4">
+            <div class="shape-nota bg-pj-white border-2 border-pj-blue-main p-5 shadow-sm">
+                <h3 class="font-eng text-xl font-bold text-pj-blue-main uppercase mb-2">Conditions</h3>
+                <ul class="text-xs space-y-2 list-disc pl-4">
+                    <li>รองาน 4–8 ชม. (รันคิว)</li>
+                    <li>งานป้ายเริ่มต้น 50.- (งานเร่ง +10.-)</li>
+                    <li>โอนแล้วไม่คืนเงินทุกกรณี</li>
+                    <li>แก้งาน/เปลี่ยนข้อมูล คิดจุดละ 20.-</li>
                 </ul>
             </div>
         </section>
 
-        <section class="mx-4 space-y-4">
-            <div class="shape-nota bg-pj-white border-2 border-pj-blue-main p-5">
-                <h3 class="font-bold mb-2">ลิงก์ผลงานและข้อมูล</h3>
-                <div class="grid gap-2 text-xs">
-                    <a href="https://drive.google.com/drive/folders/1_XMpP9EC2Yqq2-6cYfRn0fy8i9Q6cvoi" class="block p-2 bg-green-50 rounded">งานป้ายตัวอย่าง</a>
-                    <a href="https://m.facebook.com/story.php?story_fbid=pfbid0VoVRA4MbGu79CbqBREGD8jcxavv6HzJ2F9jcyvVCUrLxEPSRoFtNQNA44yM83zs9l&id=61586611223621" class="block p-2 bg-green-50 rounded">เรทเติมกระดุม</a>
-                    <a href="https://drive.google.com/drive/mobile/folders/1fj024BhkgC1ctJeiwyZUG3USteSdzWzr" class="block p-2 bg-green-50 rounded">เทมเพลตเว็บไซต์</a>
-                </div>
-            </div>
-        </section>
-
+        <!-- Contact Section -->
         <section class="mt-8 mb-12 flex flex-col items-center">
-            <h2 class="font-eng text-xl font-bold text-pj-blue-main mb-4">CONTACT</h2>
+            <h2 class="font-eng text-xl font-bold text-pj-blue-main mb-4">Contact</h2>
             <div class="flex gap-4">
-                <a href="https://www.facebook.com/profile.php?id=61554192600355" class="w-12 h-12 bg-pj-white border-2 border-pj-blue-light rounded-full flex items-center justify-center">FB</a>
-                <a href="https://line.me/ti/p/LfBtdhlrVa" class="w-12 h-12 bg-pj-white border-2 border-pj-blue-light rounded-full flex items-center justify-center">LINE</a>
+                <a href="https://www.facebook.com/profile.php?id=61554192600355" target="_blank" class="px-6 py-2 bg-pj-blue-light rounded-full font-bold">Facebook</a>
+                <a href="https://line.me/ti/p/LfBtdhlrVa" target="_blank" class="px-6 py-2 bg-pj-blue-light rounded-full font-bold">Line</a>
             </div>
         </section>
     </main>
