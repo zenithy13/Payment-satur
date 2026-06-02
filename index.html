@@ -19,26 +19,17 @@
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-15px) rotate(10deg); }
         }
-        @keyframes float-left-right {
-            0%, 100% { transform: translateX(0px) rotate(0deg); }
-            50% { transform: translateX(15px) rotate(-10deg); }
-        }
         @keyframes pulse-soft {
             0%, 100% { transform: scale(1); opacity: 0.8; }
             50% { transform: scale(1.1); opacity: 1; }
         }
-        @keyframes spin-slow { 100% { transform: rotate(360deg); } }
         @keyframes dash-animation {
             from { stroke-dashoffset: 0; }
             to { stroke-dashoffset: -24; }
         }
         .animate-dash { animation: dash-animation 1s linear infinite; }
         .anim-float-1 { animation: float-up-down 4s ease-in-out infinite; }
-        .anim-float-2 { animation: float-up-down 5s ease-in-out infinite 1.5s; }
-        .anim-float-3 { animation: float-left-right 6s ease-in-out infinite; }
-        .anim-float-4 { animation: float-left-right 4.5s ease-in-out infinite 2s; }
         .anim-pulse { animation: pulse-soft 3s ease-in-out infinite; }
-        .anim-spin { animation: spin-slow 8s linear infinite; }
         
         .glass-card {
             background: rgba(255, 255, 255, 0.9);
@@ -67,9 +58,9 @@
     </script>
 </head>
 <body class="flex flex-col items-center py-6 px-4 text-brown-600 relative overflow-x-hidden">
+    <!-- Background Elements -->
     <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
         <svg class="absolute top-[5%] left-[10%] w-8 h-8 text-pink-200 anim-float-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-        <svg class="absolute top-[15%] left-[2%] w-6 h-6 text-pink-100 anim-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
     </div>
 
     <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-brown-600/95 text-cream-50 px-6 py-3 rounded-full shadow-xl transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-50 flex items-center gap-2 font-medium text-sm">
@@ -78,9 +69,7 @@
 
     <div class="max-w-[420px] w-full relative z-10 space-y-5 pb-10">
         <div class="text-center pt-2 pb-2 relative">
-            <h1 class="text-2xl font-bold text-brown-600 flex items-center justify-center gap-2">
-                Zenithy
-            </h1>
+            <h1 class="text-2xl font-bold text-brown-600">Zenithy</h1>
             <p class="text-sm font-medium text-pink-400 mt-1">open 9:00-23:00 น.🩵</p>
         </div>
 
@@ -102,20 +91,28 @@
                 </div>
 
                 <div class="space-y-4">
+                    <!-- Kbank -->
                     <div class="virtual-card relative bg-brown-500 rounded-[24px] p-5 text-white cursor-pointer shadow-lg" onclick="copyText('1953863533', this, 'kbank')">
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-sm font-bold">ธนาคารกสิกรไทย</span>
                             <span class="kbank-btn text-[10px] bg-white/20 px-3 py-1 rounded-full">คัดลอก</span>
                         </div>
-                        <div class="text-2xl font-bold tracking-widest">1953863533</div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-yellow-300 anim-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-5.18 3.25L8 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <span class="text-2xl font-bold tracking-widest">1953863533</span>
+                        </div>
                     </div>
 
+                    <!-- Wallet -->
                     <div class="virtual-card relative bg-pink-400 rounded-[24px] p-5 text-white cursor-pointer shadow-lg" onclick="copyText('0918873248', this, 'true')">
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-sm font-bold">TrueMoney Wallet</span>
                             <span class="true-btn text-[10px] bg-white/20 px-3 py-1 rounded-full">คัดลอก</span>
                         </div>
-                        <div class="text-2xl font-bold tracking-widest">0918873248</div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-yellow-300 anim-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-5.18 3.25L8 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <span class="text-2xl font-bold tracking-widest">0918873248</span>
+                        </div>
                     </div>
                 </div>
 
@@ -145,7 +142,6 @@
             document.execCommand('copy');
             document.body.removeChild(textArea);
             showToast();
-            
             const btn = containerElement.querySelector(type === 'kbank' ? '.kbank-btn' : '.true-btn');
             const original = btn.innerText;
             btn.innerText = 'สำเร็จ!';
@@ -163,24 +159,3 @@
     </script>
 </body>
 </html>
-<div class="virtual-card relative bg-brown-500 rounded-[24px] p-5 text-white cursor-pointer shadow-lg" onclick="copyText('1953863533', this, 'kbank')">
-    <div class="flex justify-between items-center mb-2">
-        <span class="text-sm font-bold">ธนาคารกสิกรไทย</span>
-        <span class="kbank-btn text-[10px] bg-white/20 px-3 py-1 rounded-full flex items-center gap-1">
-            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-5.18 3.25L8 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            คัดลอก
-        </span>
-    </div>
-    <div class="text-2xl font-bold tracking-widest">1953863533</div>
-</div>
-
-<div class="virtual-card relative bg-pink-400 rounded-[24px] p-5 text-white cursor-pointer shadow-lg" onclick="copyText('0918873248', this, 'true')">
-    <div class="flex justify-between items-center mb-2">
-        <span class="text-sm font-bold">TrueMoney Wallet</span>
-        <span class="true-btn text-[10px] bg-white/20 px-3 py-1 rounded-full flex items-center gap-1">
-            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-5.18 3.25L8 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            คัดลอก
-        </span>
-    </div>
-    <div class="text-2xl font-bold tracking-widest">0918873248</div>
-</div>
