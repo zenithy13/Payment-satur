@@ -3,123 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zenithy Payment</title>
-   
+    <title>zenithyshop - รับทำเว็บไซต์ & เติมเกม</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Mitr:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'mitr': ['Mitr', 'sans-serif'],
+                        'fredoka': ['Fredoka', 'sans-serif'],
+                    },
+                    colors: {
+                        'pj-bg': '#fefefe', // เปลี่ยนเป็นโทนสว่างตามธีมเขียว-ครีม
+                        'pj-blue-light': '#dcfce7', // เขียวอ่อน
+                        'pj-blue-main': '#22c55e', // เขียวหลัก
+                        'pj-blue-dark': '#1a1a1a', // ดำ
+                        'pj-yellow-light': '#fef3c7', // ครีม
+                        'pj-yellow-main': '#f59e0b',
+                        'pj-pink': '#22c55e', // เปลี่ยนโทนชมพูเป็นเขียวเพื่อคุมโทน
+                        'pj-white': '#ffffff',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(34, 197, 94, 0.2)',
+                        'hard': '4px 4px 0px 0px rgba(0, 0, 0, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body { font-family: 'Prompt', sans-serif; background: linear-gradient(135deg, #fff9fb 0%, #fcecf2 100%); min-height: 100vh; }
-        @keyframes float-up-down { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(10deg); } }
-        @keyframes float-left-right { 0%, 100% { transform: translateX(0px) rotate(0deg); } 50% { transform: translateX(15px) rotate(-10deg); } }
-        @keyframes pulse-soft { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
-        @keyframes spin-slow { 100% { transform: rotate(360deg); } }
-        @keyframes dash-animation { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -24; } }
-        .animate-dash { animation: dash-animation 1s linear infinite; }
-        .anim-float-1 { animation: float-up-down 4s ease-in-out infinite; }
-        .anim-float-2 { animation: float-up-down 5s ease-in-out infinite 1.5s; }
-        .anim-float-3 { animation: float-left-right 6s ease-in-out infinite; }
-        .anim-float-4 { animation: float-left-right 4.5s ease-in-out infinite 2s; }
-        .anim-pulse { animation: pulse-soft 3s ease-in-out infinite; }
-        .anim-spin { animation: spin-slow 8s linear infinite; }
-        .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 1); box-shadow: 0 20px 50px -10px rgba(244, 114, 182, 0.15), inset 0 2px 10px rgba(255, 255, 255, 0.5); }
-        .virtual-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .virtual-card:hover { transform: translateY(-4px); }
-        .virtual-card:active { transform: translateY(2px) scale(0.98); }
-        ::-webkit-scrollbar { width: 0px; }
+        body { font-family: 'Mitr', sans-serif; background-color: #fefefe; overflow-x: hidden; color: #1a1a1a; }
+        .font-eng { font-family: 'Fredoka', sans-serif; }
+        .shape-header { border-radius: 40px 100px 100px 40px; position: relative; }
+        .shape-info { border-radius: 20px; }
+        .shape-bubble-left { border-radius: 20px; position: relative; }
+        .shape-bubble-left::after { content: ''; position: absolute; right: -15px; top: 50%; transform: translateY(-50%); border-width: 15px 0 15px 20px; border-color: transparent transparent transparent #22c55e; }
+        .shape-nota { border-radius: 20px; position: relative; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #dcfce7; border-radius: 10px; }
+        .modal { transition: opacity 0.3s ease, visibility 0.3s ease; }
+        .modal.active { opacity: 1; visibility: visible; }
+        .modal.inactive { opacity: 0; visibility: hidden; }
+        .modal-content { transition: transform 0.3s ease; transform: scale(0.95); }
+        .modal.active .modal-content { transform: scale(1); }
+        .bg-shapes { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden; }
     </style>
-   
-    <script>
-        tailwind.config = { theme: { extend: { colors: { cream: { 50: '#fffdfa', 100: '#fdf5ee', 200: '#fae8d4' }, brown: { 300: '#d4b49e', 400: '#bc9680', 500: '#8b5e3c', 600: '#5c3d26' }, pink: { 50: '#fff0f5', 100: '#ffe0ec', 200: '#ffc2d9', 300: '#ffa3c6', 400: '#ff85b3', 500: '#ff66a0' } } } } }
-    </script>
 </head>
-<body class="flex flex-col items-center py-6 px-4 text-brown-600 relative overflow-x-hidden">
-    <!-- Background Decorative SVGs -->
-    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <svg class="absolute top-[5%] left-[10%] w-8 h-8 text-pink-300 anim-float-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-        <svg class="absolute top-[15%] left-[2%] w-6 h-6 text-white/60 anim-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-        <svg class="absolute top-[8%] left-[25%] w-4 h-4 text-pink-400/50 anim-float-3" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
-        <svg class="absolute top-[10%] right-[8%] w-10 h-10 text-pink-200 anim-float-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-        <svg class="absolute top-[2%] right-[20%] w-5 h-5 text-white/80 anim-float-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-        <svg class="absolute top-[40%] -left-2 w-12 h-12 text-pink-100 anim-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-        <svg class="absolute top-[50%] right-[2%] w-6 h-6 text-pink-300 anim-float-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        <svg class="absolute bottom-[10%] left-[10%] w-8 h-8 text-pink-200 anim-float-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-        <svg class="absolute bottom-[5%] right-[15%] w-7 h-7 text-white/70 anim-float-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-        <svg class="absolute bottom-[20%] right-[5%] w-4 h-4 text-pink-400/40 anim-pulse" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
+<body class="antialiased relative selection:bg-yellow-200">
+    <div class="bg-shapes">
+        <svg class="absolute top-10 -left-10 w-64 h-64 text-green-100 opacity-50" viewBox="0 0 200 200"><path fill="currentColor" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,81.3,-46.3C90.8,-33.5,96.8,-18,95.5,-2.9C94.2,12.2,85.6,26.9,75.3,39.6C65,52.3,53,63.1,39.4,70.5C25.8,77.9,10.6,81.9,-4.3,81.4C-19.2,80.9,-33.7,75.9,-47.5,68.4C-61.3,60.9,-74.3,50.9,-82.4,37.6C-90.5,24.3,-93.7,7.7,-91.4,-8.2C-89.1,-24.1,-81.3,-39.3,-69.9,-51.1C-58.5,-62.9,-43.5,-71.3,-29.1,-75.7C-14.7,-80.1, -1.2,-80.5, 12.5,-78.9C26.2,-77.3, 30.6,-83.6, 44.7,-76.4Z" transform="translate(100 100) scale(1.1)" /></svg>
     </div>
 
-    <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-brown-500/95 backdrop-blur-sm text-cream-50 px-6 py-3 rounded-full shadow-xl transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-50 flex items-center gap-2 font-medium text-sm border border-brown-400">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 text-pink-200"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-        คัดลอกเลขบัญชีแล้ว
-    </div>
-
-    <div class="max-w-[420px] w-full relative z-10 space-y-5 pb-10">
-        <div class="text-center pt-2 pb-2 relative">
-            <h1 class="text-2xl font-bold tracking-tight text-pink-500">Zenithy</h1>
-            <p class="text-sm font-medium text-brown-400 mt-1">open 9:00-23:00 น. งดโอนหลัง 00:00 น. น้า</p>
-        </div>
-        
-        <div class="glass-card rounded-[40px] p-3 relative z-10">
-            <div class="relative p-2 rounded-[36px] z-10">
-                <svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="34" fill="none" stroke="#f472b6" stroke-width="2.5" stroke-dasharray="12 12" stroke-linecap="round" class="animate-dash" />
-                </svg>
-                <div class="rounded-[28px] overflow-hidden relative shadow-sm border-[4px] border-white">
-                    <img src="IMG_1826.jpeg" alt="Zenithy Banner" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/600x600/fce7f3/ec4899?text=Zenithy'">
-                </div>
-            </div>
-            
-            <div class="p-4 pt-6 space-y-5">
-                <div class="text-center">
-                    <p class="text-[15px] font-medium text-brown-600">ชื่อบัญชี <span class="text-pink-500 font-bold bg-pink-50/80 px-2 py-0.5 rounded-lg border border-pink-100">ปรียากานต์</span> เท่านั้น !</p>
-                </div>
-                
-                <div class="space-y-4">
-                    <div class="virtual-card bg-gradient-to-br from-brown-400 to-brown-500 rounded-[24px] p-5 shadow-lg shadow-brown-500/20 cursor-pointer" onclick="copyText('1953863533', this)">
-                        <div class="flex justify-between items-center text-white"><span class="font-bold text-sm">KBank</span><button class="bg-white/20 text-white text-[12px] font-bold px-4 py-2 rounded-full">คัดลอก</button></div>
-                        <div class="text-white font-bold text-[22px] tracking-widest mt-1">1953863533</div>
-                    </div>
-                    <div class="virtual-card bg-gradient-to-br from-pink-300 to-pink-400 rounded-[24px] p-5 shadow-lg shadow-pink-400/20 cursor-pointer" onclick="copyText('0918873248', this)">
-                        <div class="flex justify-between items-center text-white"><span class="font-bold text-sm">TrueMoney</span><button class="bg-white/20 text-white text-[12px] font-bold px-4 py-2 rounded-full">คัดลอก</button></div>
-                        <div class="text-white font-bold text-[22px] tracking-widest mt-1">0918873248</div>
+    <main class="max-w-[500px] mx-auto min-h-screen px-4 py-12 relative z-10 flex flex-col gap-8">
+        <section class="relative">
+            <div class="shape-header bg-pj-blue-light p-8 pr-16 shadow-soft z-10 relative mt-4 ml-[-20px] mr-4">
+                <div class="absolute -top-10 -right-4 z-30">
+                    <div class="w-32 h-36 bg-pj-white p-2.5 pb-8 rounded shadow-lg border border-green-200">
+                        <img src="https://placehold.co/150x150/1a1a1a/ffffff?text=Zenithy" alt="Logo" class="w-full h-full object-cover">
                     </div>
                 </div>
+                <h1 class="font-eng text-4xl text-pj-blue-dark font-bold tracking-wide">zenithy<br><span class="text-2xl ml-4">shop</span></h1>
+                <div class="inline-block bg-pj-blue-dark text-pj-white font-eng px-4 py-1.5 rounded-full text-sm mt-3">Open 9:00-23:00</div>
+            </div>
+            <p class="mt-6 ml-6 text-sm font-medium pr-4">zenithy รับทำเว็บไซต์ร้าน / เติมเกม Identity V / ทำป้ายต่าง ๆ ครบจบที่นี่</p>
+        </section>
 
-                <div class="bg-pink-50/50 p-4 rounded-2xl border border-pink-100 text-[13px] text-brown-600 space-y-2">
-                    <p>📝 โน๊ตสลิป: ” ใช้บริการร้าน Fb:zenithy satur “</p>
-                    <p>🧾 โอนเรียบร้อยแจ้งสลิปในแชทได้เลยค่ะ</p>
-                    <p class="font-bold text-pink-500 pt-1">📍 กฎของร้าน 📍</p>
-                    <ul class="list-disc pl-4">
-                        <li>โอนแล้วไม่คืนเงินทุกกรณี</li>
-                        <li>แจ้งไอดีผิดไม่รับผิดชอบ</li>
-                        <li>ผ่อนไม่ครบ/ไม่ต่อเนื่องยึดยอดทันที</li>
-                        <li>งานป้ายยกเลิกไม่คืนเงิน</li>
-                    </ul>
-                </div>
+        <section class="relative ml-8">
+            <div class="shape-info bg-pj-white border-2 border-pj-blue-light p-6 shadow-soft">
+                <h2 class="font-eng text-xl font-bold text-pj-blue-main mb-3">SERVICES</h2>
+                <ul class="text-sm space-y-2">
+                    <li>• เว็บไซต์ร้านเริ่มต้น 129.- (เทมเพลต 50+)</li>
+                    <li>• เติมเกม Identity V</li>
+                    <li>• รับทำป้าย เริ่มต้น 50.-</li>
+                </ul>
+            </div>
+        </section>
 
-                <div class="flex gap-3">
-                    <a href="https://www.facebook.com/profile.php?id=61554192600355" class="flex-1 py-3 bg-white rounded-2xl text-center font-bold text-sm border border-pink-100">Facebook</a>
-                    <a href="https://line.me/ti/p/LfBtdhlrVa" class="flex-1 py-3 bg-white rounded-2xl text-center font-bold text-sm border border-pink-100">Line</a>
+        <section class="mx-4 space-y-4">
+            <div class="shape-nota bg-pj-white border-2 border-pj-blue-main p-5">
+                <h3 class="font-bold mb-2">ลิงก์ผลงานและข้อมูล</h3>
+                <div class="grid gap-2 text-xs">
+                    <a href="https://drive.google.com/drive/folders/1_XMpP9EC2Yqq2-6cYfRn0fy8i9Q6cvoi" class="block p-2 bg-green-50 rounded">งานป้ายตัวอย่าง</a>
+                    <a href="https://m.facebook.com/story.php?story_fbid=pfbid0VoVRA4MbGu79CbqBREGD8jcxavv6HzJ2F9jcyvVCUrLxEPSRoFtNQNA44yM83zs9l&id=61586611223621" class="block p-2 bg-green-50 rounded">เรทเติมกระดุม</a>
+                    <a href="https://drive.google.com/drive/mobile/folders/1fj024BhkgC1ctJeiwyZUG3USteSdzWzr" class="block p-2 bg-green-50 rounded">เทมเพลตเว็บไซต์</a>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <script>
-        function copyText(text, el) {
-            navigator.clipboard.writeText(text);
-            showToast();
-            const btn = el.querySelector('button');
-            const orig = btn.innerText;
-            btn.innerText = 'สำเร็จ';
-            setTimeout(() => btn.innerText = orig, 2000);
-        }
-        function showToast() {
-            const toast = document.getElementById('toast');
-            toast.classList.remove('opacity-0', 'translate-y-4');
-            toast.classList.add('opacity-100', 'translate-y-0');
-            setTimeout(() => { toast.classList.remove('opacity-100', 'translate-y-0'); toast.classList.add('opacity-0', 'translate-y-4'); }, 2500);
-        }
-    </script>
+        <section class="mt-8 mb-12 flex flex-col items-center">
+            <h2 class="font-eng text-xl font-bold text-pj-blue-main mb-4">CONTACT</h2>
+            <div class="flex gap-4">
+                <a href="https://www.facebook.com/profile.php?id=61554192600355" class="w-12 h-12 bg-pj-white border-2 border-pj-blue-light rounded-full flex items-center justify-center">FB</a>
+                <a href="https://line.me/ti/p/LfBtdhlrVa" class="w-12 h-12 bg-pj-white border-2 border-pj-blue-light rounded-full flex items-center justify-center">LINE</a>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
