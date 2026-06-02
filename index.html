@@ -15,6 +15,7 @@
             min-height: 100vh;
         }
        
+        /* อนิเมชั่นลอยๆ สำหรับ SVG พื้นหลัง */
         @keyframes float-up-down {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-15px) rotate(10deg); }
@@ -28,6 +29,7 @@
             50% { transform: scale(1.1); opacity: 1; }
         }
         @keyframes spin-slow { 100% { transform: rotate(360deg); } }
+        /* อนิเมชั่นกรอบเส้นประวิ่ง */
         @keyframes dash-animation {
             from { stroke-dashoffset: 0; }
             to { stroke-dashoffset: -24; }
@@ -41,6 +43,7 @@
         .anim-float-4 { animation: float-left-right 4.5s ease-in-out infinite 2s; }
         .anim-pulse { animation: pulse-soft 3s ease-in-out infinite; }
         .anim-spin { animation: spin-slow 8s linear infinite; }
+        /* การ์ดสไตล์ใหม่ */
         .glass-card {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
@@ -69,9 +72,25 @@
             theme: {
                 extend: {
                     colors: {
-                        cream: { 50: '#fffdfa', 100: '#fdf5ee', 200: '#fae8d4' },
-                        brown: { 300: '#d4b49e', 400: '#bc9680', 500: '#8b5e3c', 600: '#5c3d26' },
-                        pink: { 50: '#fff0f5', 100: '#ffe0ec', 200: '#ffc2d9', 300: '#ffa3c6', 400: '#ff85b3', 500: '#ff66a0' }
+                        cream: {
+                            50: '#fffdfa',
+                            100: '#fdf5ee',
+                            200: '#fae8d4',
+                        },
+                        brown: {
+                            300: '#d4b49e',
+                            400: '#bc9680',
+                            500: '#8b5e3c',
+                            600: '#5c3d26',
+                        },
+                        pink: {
+                            50: '#fff0f5',
+                            100: '#ffe0ec',
+                            200: '#ffc2d9',
+                            300: '#ffa3c6',
+                            400: '#ff85b3',
+                            500: '#ff66a0',
+                        }
                     }
                 }
             }
@@ -93,11 +112,14 @@
     </div>
     
     <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-brown-500/95 backdrop-blur-sm text-cream-50 px-6 py-3 rounded-full shadow-xl transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-50 flex items-center gap-2 font-medium text-sm border border-brown-400">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 text-pink-200"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 text-pink-200">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
         คัดลอกเลขบัญชีแล้ว
     </div>
 
     <div class="max-w-[420px] w-full relative z-10 space-y-5 pb-10">
+       
         <div class="text-center pt-2 pb-2 relative">
             <h1 class="text-2xl font-bold tracking-tight text-pink-500 flex items-center justify-center gap-2">
                 Zenithy
@@ -106,6 +128,8 @@
         </div>
 
         <div class="glass-card rounded-[40px] p-3 relative z-10">
+            <svg class="absolute -top-4 -left-2 w-9 h-9 text-pink-300 anim-float-1 z-20 drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+
             <div class="relative p-2 rounded-[36px] z-10">
                 <svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="34" fill="none" stroke="#f472b6" stroke-width="2.5" stroke-dasharray="12 12" stroke-linecap="round" class="animate-dash" />
@@ -124,63 +148,60 @@
 
                 <div class="space-y-4">
                     <div class="virtual-card relative bg-gradient-to-br from-brown-400 to-brown-500 rounded-[24px] p-5 shadow-lg shadow-brown-500/20 cursor-pointer border border-brown-300/30" onclick="copyText('1953863533', this, 'kbank')">
-                        <div class="relative z-10 flex flex-col gap-4">
-                            <div class="flex justify-between items-center">
-                                <div class="bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20"><span class="text-white font-bold text-sm tracking-wider">KBank</span></div>
-                                <button class="kbank-btn bg-white text-brown-500 text-[12px] font-bold px-4 py-2 rounded-full flex items-center gap-1.5 shadow-sm pointer-events-none">คัดลอก</button>
-                            </div>
-                            <div class="mt-2">
-                                <div class="text-cream-50/90 text-[11px] font-medium mb-1">กสิกรไทย (ปรียากานต์)</div>
-                                <div class="text-white font-bold text-[22px] tracking-widest leading-none">1953863533</div>
-                            </div>
+                        <div class="relative z-10 flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">KBank</span>
+                            <button class="kbank-btn bg-white text-brown-500 text-[12px] font-bold px-4 py-2 rounded-full">คัดลอก</button>
                         </div>
+                        <div class="mt-3 text-white font-bold text-[20px]">1953863533</div>
                     </div>
 
                     <div class="virtual-card relative bg-gradient-to-br from-pink-300 to-pink-400 rounded-[24px] p-5 shadow-lg shadow-pink-400/20 cursor-pointer border border-pink-200/50" onclick="copyText('0918873248', this, 'true')">
-                        <div class="relative z-10 flex flex-col gap-4">
-                            <div class="flex justify-between items-center">
-                                <div class="bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20"><span class="text-white font-bold text-sm tracking-wider">TrueMoney</span></div>
-                                <button class="true-btn bg-white text-pink-500 text-[12px] font-bold px-4 py-2 rounded-full flex items-center gap-1.5 shadow-sm pointer-events-none">คัดลอก</button>
-                            </div>
-                            <div class="mt-2">
-                                <div class="text-cream-50/90 text-[11px] font-medium mb-1">วอเลท (ปรียากานต์)</div>
-                                <div class="text-white font-bold text-[22px] tracking-widest leading-none">0918873248</div>
-                            </div>
+                        <div class="relative z-10 flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">TrueMoney</span>
+                            <button class="true-btn bg-white text-pink-500 text-[12px] font-bold px-4 py-2 rounded-full">คัดลอก</button>
                         </div>
+                        <div class="mt-3 text-white font-bold text-[20px]">0918873248</div>
                     </div>
                 </div>
 
-                <div class="bg-cream-100/90 border border-brown-200 rounded-2xl p-4 text-[13px] leading-relaxed text-brown-600 font-medium">
-                    📝 โน๊ตสลิปว่า ” ใช้บริการร้าน Fb:zenithy satur “ ทุกครั้งนะคะ<br>
-                    🧾 โอนเรียบร้อยแจ้งสลิปในแชทได้เลยค่ะ
-                </div>
-
-                <div class="bg-pink-50/90 border border-pink-200 rounded-2xl p-4 text-[13px] text-left text-brown-600 font-medium">
-                    <span class="font-bold text-pink-500 block mb-2">📍 กฎของร้าน 📍</span>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li>โอนแล้วไม่คืนเงินทุกกรณี</li>
-                        <li>แจ้งไอดีผิด ไม่รับผิดชอบทุกกรณี</li>
-                        <li>ผ่อนส่งยอดไม่ครบ/ไม่ต่อเนื่อง ยึดยอดทันที</li>
+                <div class="text-[13px] text-brown-600 space-y-3 bg-pink-50/50 p-4 rounded-2xl border border-pink-100">
+                    <p>📝 โน๊ตสลิปว่า ” ใช้บริการร้าน Fb:zenithy satur “ ทุกครั้งนะคะ</p>
+                    <p>🧾 โอนเรียบร้อยแจ้งสลิปในแชทได้เลยค่ะ</p>
+                    <p class="font-bold text-pink-500 pt-2">📍 กฎของร้าน 📍</p>
+                    <ul class="list-disc pl-4 space-y-1">
+                        <li>โอนเงินแล้วไม่คืนเงินทุกกรณี</li>
+                        <li>แจ้งไอดีผิดไม่รับผิดชอบทุกกรณี</li>
+                        <li>ผ่อนชำระส่งยอดไม่ครบ/ไม่ต่อเนื่องยึดยอดทันที</li>
                         <li>งานป้ายยกเลิกไม่คืนเงินทุกกรณี</li>
                     </ul>
                 </div>
 
-                <div class="space-y-2">
-                    <a href="https://www.facebook.com/profile.php?id=61554192600355" class="block bg-white border border-pink-100 p-3 rounded-2xl text-center text-sm font-medium">Facebook</a>
-                    <a href="https://line.me/ti/p/LfBtdhlrVa" class="block bg-white border border-pink-100 p-3 rounded-2xl text-center text-sm font-medium">Line</a>
+                <div class="flex gap-2">
+                    <a href="https://www.facebook.com/profile.php?id=61554192600355" class="flex-1 py-3 bg-white border border-pink-100 rounded-2xl text-center text-sm font-bold text-brown-600">Facebook</a>
+                    <a href="https://line.me/ti/p/LfBtdhlrVa" class="flex-1 py-3 bg-white border border-pink-100 rounded-2xl text-center text-sm font-bold text-brown-600">Line</a>
                 </div>
             </div>
+        </div>
+
+        <div class="text-center text-[11px] text-brown-400 pt-1">
+            ปกติเค้าจะตอบกลับไม่เกิน 5 นาทีค่า (หากไม่ติดงานประจำน้า)
         </div>
     </div>
 
     <script>
         function copyText(text, containerElement, type) {
-            navigator.clipboard.writeText(text);
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
             showToast();
+            
             const btn = containerElement.querySelector(type === 'kbank' ? '.kbank-btn' : '.true-btn');
-            const original = btn.innerHTML;
-            btn.innerHTML = 'สำเร็จ';
-            setTimeout(() => btn.innerHTML = original, 2000);
+            const original = btn.innerText;
+            btn.innerText = 'สำเร็จ';
+            setTimeout(() => btn.innerText = original, 2000);
         }
         function showToast() {
             const toast = document.getElementById('toast');
