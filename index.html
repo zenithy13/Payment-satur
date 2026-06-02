@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: 'Prompt', sans-serif;
-            background: linear-gradient(135deg, #fffafb 0%, #fdf2f5 100%);
+            background: linear-gradient(135deg, #fff9fb 0%, #fcecf2 100%);
             min-height: 100vh;
         }
        
@@ -19,27 +19,35 @@
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-15px) rotate(10deg); }
         }
+        @keyframes float-left-right {
+            0%, 100% { transform: translateX(0px) rotate(0deg); }
+            50% { transform: translateX(15px) rotate(-10deg); }
+        }
         @keyframes pulse-soft {
             0%, 100% { transform: scale(1); opacity: 0.8; }
             50% { transform: scale(1.1); opacity: 1; }
         }
+        @keyframes spin-slow { 100% { transform: rotate(360deg); } }
         @keyframes dash-animation {
             from { stroke-dashoffset: 0; }
             to { stroke-dashoffset: -24; }
         }
         .animate-dash { animation: dash-animation 1s linear infinite; }
         .anim-float-1 { animation: float-up-down 4s ease-in-out infinite; }
+        .anim-float-2 { animation: float-up-down 5s ease-in-out infinite 1.5s; }
+        .anim-float-3 { animation: float-left-right 6s ease-in-out infinite; }
+        .anim-float-4 { animation: float-left-right 4.5s ease-in-out infinite 2s; }
         .anim-pulse { animation: pulse-soft 3s ease-in-out infinite; }
-        
+        .anim-spin { animation: spin-slow 8s linear infinite; }
         .glass-card {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 1);
-            box-shadow: 0 20px 50px -10px rgba(219, 140, 168, 0.15);
+            box-shadow: 0 20px 50px -10px rgba(244, 114, 182, 0.15), inset 0 2px 10px rgba(255, 255, 255, 0.5);
         }
         .virtual-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .virtual-card:hover { transform: translateY(-4px); }
-        .virtual-card:active { transform: translateY(2px) scale(0.98); }
         ::-webkit-scrollbar { width: 0px; }
     </style>
    
@@ -49,8 +57,8 @@
                 extend: {
                     colors: {
                         cream: { 50: '#fffdfa', 100: '#fdf5ee', 200: '#fae8d4' },
-                        brown: { 300: '#d4b49e', 400: '#bc9680', 500: '#a68574', 600: '#8c6d5e' },
-                        pink: { 50: '#fff5f7', 100: '#ffe4ea', 200: '#ffccd8', 300: '#ffb3c6', 400: '#ff99b3', 500: '#f48fb1' }
+                        brown: { 300: '#d4b49e', 400: '#bc9680', 500: '#8b5e3c', 600: '#5c3d26' },
+                        pink: { 50: '#fff0f5', 100: '#ffe0ec', 200: '#ffc2d9', 300: '#ffa3c6', 400: '#ff85b3', 500: '#ff66a0' }
                     }
                 }
             }
@@ -58,76 +66,69 @@
     </script>
 </head>
 <body class="flex flex-col items-center py-6 px-4 text-brown-600 relative overflow-x-hidden">
-    <!-- Background Elements -->
-    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <svg class="absolute top-[5%] left-[10%] w-8 h-8 text-pink-200 anim-float-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-    </div>
-
-    <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-brown-600/95 text-cream-50 px-6 py-3 rounded-full shadow-xl transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-50 flex items-center gap-2 font-medium text-sm">
+    
+    <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-brown-500/95 backdrop-blur-sm text-cream-50 px-6 py-3 rounded-full shadow-xl transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-50 flex items-center gap-2 font-medium text-sm border border-brown-400">
         คัดลอกเลขบัญชีแล้ว
     </div>
 
     <div class="max-w-[420px] w-full relative z-10 space-y-5 pb-10">
-        <div class="text-center pt-2 pb-2 relative">
-            <h1 class="text-2xl font-bold text-brown-600">Zenithy</h1>
-            <p class="text-sm font-medium text-pink-400 mt-1">open 9:00-23:00 น.🩵</p>
+        <div class="text-center pt-2 pb-2">
+            <h1 class="text-2xl font-bold tracking-tight text-pink-500">Zenithy</h1>
+            <p class="text-sm font-medium text-brown-400 mt-1">open 9:00-23:00 น.🩵</p>
         </div>
 
         <div class="glass-card rounded-[40px] p-3 relative z-10">
             <div class="relative p-2 rounded-[36px] z-10">
-                <svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="34" fill="none" stroke="#f48fb1" stroke-width="2.5" stroke-dasharray="12 12" class="animate-dash" />
+                <svg class="absolute inset-0 w-full h-full pointer-events-none">
+                    <rect x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="34" fill="none" stroke="#f472b6" stroke-width="2.5" stroke-dasharray="12 12" stroke-linecap="round" class="animate-dash" />
                 </svg>
-                <div class="rounded-[28px] overflow-hidden relative border-[4px] border-white">
-                    <img src="IMG_1826.jpeg" alt="Zenithy" class="w-full h-auto object-cover">
+                <div class="rounded-[28px] overflow-hidden relative shadow-sm border-[4px] border-white">
+                    <img src="https://i.postimg.cc/yYXXLQnm/att-YZKp-Oou02U1m01U9E7IVQ5yixn-Mty-Ak-Ll-S0rpd-OVE00.jpg" alt="Zenithy" class="w-full h-auto object-cover">
                 </div>
             </div>
 
             <div class="p-4 pt-6 space-y-5">
-                <div class="text-center">
-                    <p class="text-[15px] font-medium text-brown-600">
-                        ชื่อบัญชี <span class="text-brown-500 font-bold bg-pink-100 px-3 py-1 rounded-xl">ปรียากานต์</span> เท่านั้น !
+                <div class="text-center space-y-3">
+                    <p class="text-[15px] font-medium leading-relaxed text-brown-600">
+                        เลขบัญชีตามนี้เลยค่า <br>ชื่อบัญชี <span class="text-pink-500 font-bold bg-pink-50/80 px-2 py-0.5 rounded-lg border border-pink-100">ปรียากานต์</span> เท่านั้น !
                     </p>
                 </div>
 
                 <div class="space-y-4">
-                    <!-- Kbank -->
-                    <div class="virtual-card relative bg-brown-500 rounded-[24px] p-5 text-white cursor-pointer shadow-lg" onclick="copyText('1953863533', this, 'kbank')">
+                    <!-- KBank -->
+                    <div class="virtual-card bg-gradient-to-br from-brown-400 to-brown-500 rounded-[24px] p-5 shadow-lg cursor-pointer" onclick="copyText('1953863533', this, 'kbank')">
                         <div class="flex justify-between items-center mb-2">
-                            <span class="text-sm font-bold">ธนาคารกสิกรไทย</span>
-                            <span class="kbank-btn text-[10px] bg-white/20 px-3 py-1 rounded-full">คัดลอก</span>
+                            <span class="text-white font-bold">KBank</span>
+                            <button class="kbank-btn bg-white text-brown-500 text-[12px] font-bold px-4 py-2 rounded-full">คัดลอก</button>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <svg class="w-5 h-5 text-yellow-300 anim-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-5.18 3.25L8 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <span class="text-2xl font-bold tracking-widest">1953863533</span>
-                        </div>
+                        <div class="text-white font-bold text-[22px] tracking-widest">1953863533</div>
                     </div>
 
                     <!-- Wallet -->
-                    <div class="virtual-card relative bg-pink-400 rounded-[24px] p-5 text-white cursor-pointer shadow-lg" onclick="copyText('0918873248', this, 'true')">
+                    <div class="virtual-card bg-gradient-to-br from-pink-300 to-pink-400 rounded-[24px] p-5 shadow-lg cursor-pointer" onclick="copyText('0918873248', this, 'true')">
                         <div class="flex justify-between items-center mb-2">
-                            <span class="text-sm font-bold">TrueMoney Wallet</span>
-                            <span class="true-btn text-[10px] bg-white/20 px-3 py-1 rounded-full">คัดลอก</span>
+                            <span class="text-white font-bold">TrueMoney</span>
+                            <button class="true-btn bg-white text-pink-500 text-[12px] font-bold px-4 py-2 rounded-full">คัดลอก</button>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <svg class="w-5 h-5 text-yellow-300 anim-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-5.18 3.25L8 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <span class="text-2xl font-bold tracking-widest">0918873248</span>
-                        </div>
+                        <div class="text-white font-bold text-[22px] tracking-widest">0918873248</div>
                     </div>
                 </div>
 
-                <div class="bg-cream-100 border border-brown-200 rounded-2xl p-4 text-[13px] text-brown-600">
-                    <p class="font-bold mb-2">📍 กฎของร้าน</p>
-                    <ul class="list-disc ml-4 space-y-1 opacity-90">
+                <!-- กฎของร้าน -->
+                <div class="bg-cream-100/90 border border-brown-200 rounded-2xl p-4 text-[13px] space-y-2">
+                    <p class="font-bold text-brown-600 border-b border-brown-200 pb-1">📍 กฎของร้าน 📍</p>
+                    <ul class="list-disc list-inside text-brown-600 space-y-1">
                         <li>ถ้าโอนเงินแล้วทางร้านไม่คืนเงินทุกกรณีนะคะ</li>
                         <li>แจ้งไอดีผิดทางร้านไม่รับผิดชอบทุกกรณี</li>
                         <li>ผ่อนชำระส่งยอดไม่ครบไม่ต่อเนื่องยึดยอดทันที</li>
                     </ul>
                 </div>
 
-                <div class="flex gap-3">
-                    <a href="https://www.facebook.com/profile.php?id=61554192600355" class="flex-1 text-center bg-brown-600 text-white py-3 rounded-2xl font-bold text-sm">Facebook</a>
-                    <a href="https://line.me/ti/p/LfBtdhlrVa" class="flex-1 text-center bg-pink-400 text-white py-3 rounded-2xl font-bold text-sm">Line</a>
+                <!-- ช่องทางติดต่อ -->
+                <div class="space-y-2">
+                    <p class="text-[12px] font-bold text-pink-500 uppercase text-center">📱 ช่องทางติดต่อ</p>
+                    <a href="https://www.facebook.com/profile.php?id=61554192600355" class="block bg-white border border-pink-100 p-3 rounded-2xl text-center text-sm font-medium hover:bg-pink-50">Facebook</a>
+                    <a href="https://line.me/ti/p/LfBtdhlrVa" class="block bg-white border border-pink-100 p-3 rounded-2xl text-center text-sm font-medium hover:bg-pink-50">Line</a>
                 </div>
             </div>
         </div>
@@ -135,16 +136,11 @@
 
     <script>
         function copyText(text, containerElement, type) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
+            navigator.clipboard.writeText(text);
             showToast();
             const btn = containerElement.querySelector(type === 'kbank' ? '.kbank-btn' : '.true-btn');
             const original = btn.innerText;
-            btn.innerText = 'สำเร็จ!';
+            btn.innerText = 'สำเร็จ';
             setTimeout(() => btn.innerText = original, 2000);
         }
         function showToast() {
